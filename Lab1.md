@@ -1,11 +1,11 @@
-##1. За допомогою download.file() завантажте любий excel файл з порталу&nbsp;
-##http://data.gov.ua та зчитайте його (xls, xlsx – бінарні формати, тому&nbsp;
-##встановить mode = “wb”. Виведіть перші 6 строк отриманого фрейму даних.&nbsp;
-download.file("https://data.gov.ua/dataset/dd257efd-52ad-4588-b9e3-9940264ab6dc/resource/d5e5cd47-e46b-44fc-8b61-92efef05e0d4/download/vikonavcirobitobstegennia_-10-04-2020.xlsx",destfile="file1.xlsx",method="libcurl", mode="wb")&nbsp;
-library(readxl)&nbsp;
-file1 <- read_excel("file1.xlsx")&nbsp;
-View(file1)&nbsp;
-head(file1, n=6)&nbsp;
+##1. За допомогою download.file() завантажте любий excel файл з порталу<br/>
+##http://data.gov.ua та зчитайте його (xls, xlsx – бінарні формати, тому<br/>
+##встановить mode = “wb”. Виведіть перші 6 строк отриманого фрейму даних.<br/>
+download.file("https://data.gov.ua/dataset/dd257efd-52ad-4588-b9e3-9940264ab6dc/resource/d5e5cd47-e46b-44fc-8b61-92efef05e0d4/download/vikonavcirobitobstegennia_-10-04-2020.xlsx",destfile="file1.xlsx",method="libcurl", mode="wb")<br/>
+library(readxl)<br/>
+file1 <- read_excel("file1.xlsx")<br/>
+View(file1)<br/>
+head(file1, n=6)<br/>
 
 ##Результат (1 завдання)
                                                                                                    PrefLabel
@@ -109,23 +109,24 @@ head(file1, n=6)&nbsp;
 
 
 
-##2. За допомогою download.file() завантажте файл getdata_data_ss06hid.csv за&nbsp;
-##посиланням https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv ##та завантажте дані в R. Code book, що пояснює &nbsp;
-значення змінних знаходиться за ##посиланням https://www.dropbox.com/s/dijv0rlwo4mryv5/PUMSDataDict06.pdf?dl=0&nbsp;
-##Необхідно знайти, скільки property мають value $1000000+&nbsp;
-download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv", destfile="file2.csv", method="curl")&nbsp;
-data <- read.table("file2.csv", sep=",", header=TRUE)&nbsp;
-sum(!is.na(data$VAL[data$VAL==24]))&nbsp;
+##2. За допомогою download.file() завантажте файл getdata_data_ss06hid.csv за<br/>
+##посиланням https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv ##та завантажте дані в R. Code book, що пояснює <br/>
+значення змінних знаходиться за ##посиланням https://www.dropbox.com/s/dijv0rlwo4mryv5/PUMSDataDict06.pdf?dl=0<br/>
+##Необхідно знайти, скільки property мають value $1000000+<br/>
+download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06hid.csv", destfile="file2.csv", method="curl")<br/>
+data <- read.table("file2.csv", sep=",", header=TRUE)<br/>
+sum(!is.na(data$VAL[data$VAL==24]))<br/>
 
 ##Результат (2 завдання)
 [1] 53
 
-##3. Зчитайте xml файл за посиланням http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml&nbsp;
-Скільки ресторанів мають zipcode 21231?&nbsp;
-file3 <- xmlTreeParse("http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml", useInternal=TRUE)&nbsp;
-node <- xmlRoot(file3)&nbsp;
-sum(xpathSApply(node, "//zipcode", xmlValue)==21231)&nbsp;
-savehistory("/cloud/project/lab1.Rhistory")&nbsp;
+##3. Зчитайте xml файл за посиланням http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml<br/>
+
+Скільки ресторанів мають zipcode 21231?<br/>
+file3 <- xmlTreeParse("http://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml", useInternal=TRUE)<br/>
+node <- xmlRoot(file3)<br/>
+sum(xpathSApply(node, "//zipcode", xmlValue)==21231)<br/>
+savehistory("/cloud/project/lab1.Rhistory")<br/>
 
 ##Результат (3 завдання)
 [1] 127
