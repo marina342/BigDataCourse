@@ -1,6 +1,6 @@
 1. За допомогою download.file() завантажте любий excel файл з порталу http://data.gov.ua та зчитайте його (xls, xlsx – бінарні формати, тому встановить mode = “wb”. Виведіть перші 6 строк отриманого фрейму даних.
-download.file("https://data.gov.ua/dataset/dd257efd-52ad-4588-b9e3-9940264ab6dc/resource/d5e5cd47-e46b-44fc-8b61-92efef05e0d4/download/vikonavcirobitobstegennia_-10-04-2020.xlsx",destfile="file1.xlsx",method="libcurl", mode="wb")
 ```r
+> download.file("https://data.gov.ua/dataset/dd257efd-52ad-4588-b9e3-9940264ab6dc/resource/d5e5cd47-e46b-44fc-8b61-92efef05e0d4/download/vikonavcirobitobstegennia_-10-04-2020.xlsx",destfile="file1.xlsx",method="libcurl", mode="wb")
 > library(readxl)
 > file1 <- read_excel("file1.xlsx")
 > View(file1)
