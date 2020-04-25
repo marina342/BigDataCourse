@@ -1,4 +1,4 @@
-```r
+
 > if(!file.exists("UCIdata.zip")){
 download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip","UCIdata.zip", mode = "wb")
 }
@@ -13,9 +13,9 @@ unzip("UCIdata.zip", files = NULL, exdir=".")
 > y_train <- read.table("UCI HAR Dataset/train/y_train.txt")
 > activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 > features <- read.table("UCI HAR Dataset/features.txt")
-```
+
 1. Об’єднує навчальний та тестовий набори, щоб створити один набір даних
-```r
+
 > dataSet <- rbind(x_train, x_test)
 > dataSet
 
@@ -188,10 +188,10 @@ unzip("UCIdata.zip", files = NULL, exdir=".")
        V560        V561
 1 0.1799406 -0.05862692
  [ reached 'max' / getOption("max.print") -- omitted 10298 rows ]
-```
+
 2. Витягує лише вимірювання середнього значення та стандартного
 відхилення (mean and standard deviation) для кожного вимірювання.
-```r
+
 > dataSet2 <- grep("mean()|std()", features[, 2]) 
 > dataSet2
  [1]   1   2   3   4   5   6  41  42  43  44  45  46  81  82  83  84  85  86
@@ -199,9 +199,9 @@ unzip("UCIdata.zip", files = NULL, exdir=".")
 [37] 240 241 253 254 266 267 268 269 270 271 294 295 296 345 346 347 348 349
 [55] 350 373 374 375 424 425 426 427 428 429 452 453 454 503 504 513 516 517
 [73] 526 529 530 539 542 543 552
-```
+
 4. Відповідно присвоює змінним у наборі даних описові імена.
-```r
+
 feature_names <- sapply(features[, 2], function(x) {gsub("[()]", "",x)})
 > feature_names
   [1] "tBodyAcc-mean-X"                    "tBodyAcc-mean-Y"                   
@@ -673,20 +673,20 @@ feature_names <- sapply(features[, 2], function(x) {gsub("[()]", "",x)})
 11  0.12050339
 12  0.35144181
  [ reached 'max' / getOption("max.print") -- omitted 10287 rows ]
-```
+
 
 3. Використовує описові назви діяльностей (activity) для найменування
 діяльностей у наборі даних.
-```r
+
 > factor <- factor(result$activity)
 > levels(factor) <- activity_labels[,2]
 > result$activity <- factor
-```
+
 
 5. З набору даних з кроку 4 створити другий незалежний акуратний набір
 даних (tidy dataset) із середнім значенням для кожної змінної для кожної
 діяльності та кожного суб’єкту (subject).
-```r
+
 install.packages("reshape2")
 library("reshape2")
 > meltedDataFrame <- melt(result,(id.vars=c("subject","activity")))
@@ -876,4 +876,3 @@ subject           activity        V1           V2         V3          V4
 12 -0.9902487 -0.9894927  0.26480151
  [ reached 'max' / getOption("max.print") -- omitted 168 rows ]
 write.table(secondDataSet, "tidy_data.txt", sep = ",")
-```
